@@ -495,6 +495,8 @@ arbore* simplifica(arbore *derivata)
     {
         if(derivata->stanga->data=="0")
             return new arbore("0");
+        else if(derivata->dreapta->data=="1")
+            return derivata->stanga;
         else if(derivata->dreapta->data=="0")
         {
             derivata=new arbore("EROARE NU POTI IMPARTI LA 0!");
@@ -548,6 +550,11 @@ arbore* simplifica(arbore *derivata)
     {
         if(derivata->dreapta->data=="0")
             return new arbore("1");
+    }
+    else if(derivata->data=="tg")
+    {
+        if(derivata->dreapta->data=="0")
+            return new arbore("0");
     }
     return derivata;
 }
@@ -724,7 +731,7 @@ arbore* derivare(arbore *expresie)
 }
 
 ///PARCURGEREA INORDINE
-string inordine(arbore* expresie)
+string inordine(arbore* expresie)return new arbore("0");
 {
     if (expresie == NULL)
     {
@@ -1005,7 +1012,7 @@ void alegere()
 
     case 4:
     {
-        arbore_expresie=simplifica(arbore_expresie);
+        arbore_expresie=simplifica(simplifica(arbore_expresie));
         if(arbore_expresie)
         {
             int fereastra_arbore=initwindow(latime_ecran, inaltime_ecran, "Arbore expresie");
